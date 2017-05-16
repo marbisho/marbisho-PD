@@ -40,7 +40,7 @@ void loop() {
    * The last number is a delay 0-255 range.
    */
 
-  //2 color wigwag
+  //this is the queue for Neopixel light actions
   WigWag2(strip.Color(0, 0, 255), strip.Color(255, 0, 0), 200); // Blue and Red
   WigWag2(strip.Color(0, 0, 255), strip.Color(255, 0, 0), 63); // Blue and Red
   colorWipe(strip.Color(255, 0, 0), 50); // Red
@@ -55,29 +55,7 @@ void loop() {
   delay(1);
 }
 
-void WigWag(uint32_t c, uint8_t wait) {
-  for (int j = 0; j < 10; j++) { // The j<# determines how many cycles
-    for (int i = 0; i < strip.numPixels(); i = i + 1) {
-      strip.setPixelColor(i, c);
-    }
-    for (int i = (strip.numPixels() / 2); i < strip.numPixels(); i = i + 1) {
-      strip.setPixelColor(i, 0);
-    }
-    strip.show();
-    delay(wait);
-
-    for (int i = 0; i < strip.numPixels(); i = i + 1) {
-      strip.setPixelColor(i, 0);
-    }
-    for (int i = (strip.numPixels() / 2); i < strip.numPixels(); i = i + 1) {
-      strip.setPixelColor(i, c);
-    }
-    strip.show();
-    delay(wait);
-  }
-}
-
-
+//this code is adapted from bigboystoys13 project at https://create.arduino.cc/projecthub/bigboystoys13/led-emergency-lights-using-ws2812-rgb-led-module-9800de
 void WigWag2(uint32_t c, uint32_t c2, uint8_t wait) {
   for (int j = 0; j < 20; j++) { // The j<# determines how many cycles
     for (int i = 0; i < strip.numPixels(); i = i + 1) {
